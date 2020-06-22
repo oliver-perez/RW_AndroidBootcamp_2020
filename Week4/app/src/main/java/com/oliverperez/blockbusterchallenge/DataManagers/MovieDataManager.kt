@@ -4,7 +4,7 @@ import com.oliverperez.blockbusterchallenge.Models.Movie
 import com.oliverperez.blockbusterchallenge.R
 
 class MovieDataManager {
-    private val movies = setOf<Movie>(
+    private val movies = listOf<Movie>(
         Movie(id = 1,
             releaseDate = "01/02/2020",
             summary = "Awesome Movie",
@@ -49,7 +49,7 @@ class MovieDataManager {
             poster = R.drawable.the_shawshank_redemption)
     )
 
-    fun getMovies(): Set<Movie> {
+    fun getMovies(): List<Movie> {
         return movies
     }
 }
