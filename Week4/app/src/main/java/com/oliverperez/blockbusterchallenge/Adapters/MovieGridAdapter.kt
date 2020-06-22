@@ -12,7 +12,7 @@ import com.oliverperez.blockbusterchallenge.R
 import com.oliverperez.blockbusterchallenge.Views.MovieViewHolder
 import kotlinx.android.synthetic.main.movie_view_holder.view.*
 
-class MovieGridAdapter(private val movies: List<Movie>, val clickListener: MovieClickListener): RecyclerView.Adapter<MovieViewHolder>() {
+class MovieGridAdapter(private val movies: List<Movie>, private val clickListener: MovieClickListener): RecyclerView.Adapter<MovieViewHolder>() {
     interface MovieClickListener {
         fun movieItemClicked(movie: Movie)
     }
