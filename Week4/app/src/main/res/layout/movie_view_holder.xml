@@ -10,8 +10,9 @@
     <ImageView
         android:id="@+id/poster_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/movie_poster_height"
         android:contentDescription="@string/todo"
+        android:paddingTop="@dimen/margin_standard"
         app:srcCompat="@drawable/back_to_the_future" />
 
     <TextView
@@ -19,8 +20,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        android:textSize="20sp"
+        android:layout_marginLeft="@dimen/margin_standard"
+        android:layout_marginRight="@dimen/margin_standard"
+        android:layout_marginBottom="@dimen/margin_bottom"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/move_title_size"
         android:textStyle="bold" />
 
 </LinearLayout>

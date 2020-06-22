@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="move_title_size">20sp</dimen>
+    <dimen name="margin_bottom">16dp</dimen>
+    <dimen name="margin_standard">8dp</dimen>
+    <dimen name="movie_poster_height">300dp</dimen>
+</resources>
