@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="@dimen/profile_pic_height_landscape"
+        android:layout_height="@dimen/profile_pic_height_landscape"
+        android:layout_marginTop="@dimen/padding_large"
+        android:contentDescription="@string/profile_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25
+"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/me_at_the_piano" />
+
+    <TextView
+        android:id="@+id/nameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_half"
+        android:text="@string/name_label"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        app:layout_constraintEnd_toEndOf="@+id/profileImage"
+        app:layout_constraintStart_toStartOf="@+id/profileImage"
+        app:layout_constraintTop_toBottomOf="@+id/profileImage" />
+
+    <Button
+        android:id="@+id/quoteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/buttonColor"
+        android:text="@string/action_button"
+        app:layout_constraintBottom_toBottomOf="@+id/emailLabel"
+        app:layout_constraintEnd_toEndOf="@+id/quoteLabel"
+        app:layout_constraintHorizontal_bias="0.5
+"
+        app:layout_constraintStart_toStartOf="@+id/quoteLabel" />
+
+    <TextView
+        android:id="@+id/addressLabel"
+        style="@style/common_text_view"
+        android:layout_marginTop="@dimen/padding_large"
+        android:text="@string/address_label"
+        app:layout_constraintEnd_toEndOf="@+id/roleLabel"
+        app:layout_constraintStart_toStartOf="@+id/roleLabel"
+        app:layout_constraintTop_toBottomOf="@+id/roleLabel" />
+
+    <TextView
+        android:id="@+id/tweeterLabel"
+        style="@style/common_text_view"
+        android:layout_marginTop="@dimen/padding_half"
+        android:text="@string/twitterAccount"
+        app:layout_constraintEnd_toEndOf="@+id/addressLabel"
+        app:layout_constraintStart_toStartOf="@+id/addressLabel"
+        app:layout_constraintTop_toBottomOf="@+id/addressLabel" />
+
+    <TextView
+        android:id="@+id/emailLabel"
+        style="@style/common_text_view"
+        android:layout_marginTop="@dimen/padding_half"
+        android:text="@string/email_label"
+        app:layout_constraintEnd_toEndOf="@+id/tweeterLabel"
+        app:layout_constraintStart_toStartOf="@+id/tweeterLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tweeterLabel" />
+
+    <TextView
+        android:id="@+id/quoteLabel"
+        android:layout_width="295dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="@dimen/padding_large"
+        android:layout_marginTop="@dimen/padding_large"
+        android:layout_marginEnd="@dimen/padding_large"
+        android:layout_marginBottom="@dimen/padding_large"
+        android:textSize="@dimen/quote_text_size"
+        android:text="@string/quote_label"
+        app:layout_constraintBottom_toTopOf="@+id/quoteButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toEndOf="@+id/profileImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/roleLabel"
+        style="@style/common_text_view"
+        android:layout_marginTop="@dimen/padding_half"
+        android:text="@string/role_label"
+        app:layout_constraintEnd_toEndOf="@+id/nameLabel"
+        app:layout_constraintStart_toStartOf="@+id/nameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/nameLabel" />
+</androidx.constraintlayout.widget.ConstraintLayout>

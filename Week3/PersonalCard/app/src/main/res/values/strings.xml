@@ -1,0 +1,11 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Business Card</string>
+    <string name="role_label">Android Developer</string>
+    <string name="action_button">New Quote</string>
+    <string name="email_label">oliverperez.e@gmail.com</string>
+    <string name="address_label">Mexico City, Mexico</string>
+    <string name="name_label">Oliver Perez</string>
+    <string name="quote_label">“First, solve the problem. Then, write the code.” – John Johnson</string>
+    <string name="profile_image">profileImage</string>
+    <string name="twitterAccount">/@oliver_jy</string>
+</resources>

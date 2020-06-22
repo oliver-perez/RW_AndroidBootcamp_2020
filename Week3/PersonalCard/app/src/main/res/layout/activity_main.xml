@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="@dimen/profile_pic_height_portrait"
+        android:layout_height="@dimen/profile_pic_height_portrait"
+        android:layout_marginTop="@dimen/padding_ultra_large"
+        android:contentDescription="@string/profile_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/me_at_the_piano" />
+
+    <TextView
+        android:id="@+id/nameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_standard"
+        android:text="@string/name_label"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileImage" />
+
+    <Button
+        android:id="@+id/quoteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_double"
+        android:text="@string/action_button"
+        android:background="@color/buttonColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/addressLabel"
+        style="@style/common_text_view"
+        android:layout_marginBottom="@dimen/padding_standard"
+        android:text="@string/address_label"
+        app:layout_constraintBottom_toTopOf="@+id/tweeterLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tweeterLabel"
+        style="@style/common_text_view"
+        android:layout_marginBottom="@dimen/padding_standard"
+        android:text="@string/twitterAccount"
+        app:layout_constraintBottom_toTopOf="@+id/emailLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/emailLabel"
+        style="@style/common_text_view"
+        android:layout_marginBottom="@dimen/padding_large"
+        android:text="@string/email_label"
+        app:layout_constraintBottom_toTopOf="@+id/quoteButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/quoteLabel"
+        android:layout_width="295dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_half"
+        android:layout_marginEnd="@dimen/padding_half"
+        android:text="@string/quote_label"
+        android:textSize="@dimen/quote_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/addressLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roleLabel" />
+
+    <TextView
+        android:id="@+id/roleLabel"
+        style="@style/common_text_view"
+        android:layout_marginTop="@dimen/padding_standard"
+        android:text="@string/role_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameLabel" />
+</androidx.constraintlayout.widget.ConstraintLayout>
