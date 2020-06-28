@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Blockbuster Challenge</string>
+    <string name="movie_poster">movie_poster</string>
+    <string name="todo">TODO</string>
+    <string name="detail_poster_image">Detail poster image</string>
+</resources>
