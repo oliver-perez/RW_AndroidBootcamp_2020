@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/grav"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/poster_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/movie_poster_height"
+        android:contentDescription="@string/todo"
+        android:paddingTop="@dimen/margin_standard"
+        app:srcCompat="@drawable/back_to_the_future" />
+
+    <TextView
+        android:id="@+id/movie_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/margin_standard"
+        android:layout_marginRight="@dimen/margin_standard"
+        android:layout_marginBottom="@dimen/margin_double"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/movie_title_size"
+        android:textStyle="bold" />
+
+</LinearLayout>
