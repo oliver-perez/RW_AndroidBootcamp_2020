@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity(), MovieGridAdapter.MovieClickListener {
         moviesRecyclerView = movies_recycler_view
         moviesRecyclerView.layoutManager = GridLayoutManager(this, 2)
         moviesRecyclerView.adapter = MovieGridAdapter(dataManager.getMovies(), this)
+        // TODO: Check shared prefs to validate if user is already logged in
+        startActivity(Intent(this, LoginActivity::class.java))
     }
 
     override fun movieItemClicked(movie: Movie) {
