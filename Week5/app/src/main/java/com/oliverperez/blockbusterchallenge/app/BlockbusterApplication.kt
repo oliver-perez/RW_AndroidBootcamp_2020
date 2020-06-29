@@ -3,7 +3,7 @@ package com.oliverperez.blockbusterchallenge.app
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
-import com.oliverperez.blockbusterchallenge.DataManagers.MoviesDatabase
+import com.oliverperez.blockbusterchallenge.model.MoviesDatabase
 
 class BlockbusterApplication : Application() {
 

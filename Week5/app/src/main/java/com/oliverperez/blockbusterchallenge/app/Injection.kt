@@ -1,8 +1,9 @@
 package com.oliverperez.blockbusterchallenge.app
 
-import com.oliverperez.blockbusterchallenge.DataManagers.MovieRepository
-import com.oliverperez.blockbusterchallenge.DataManagers.RoomRepository
+import com.oliverperez.blockbusterchallenge.model.MovieRepository
+import com.oliverperez.blockbusterchallenge.model.RoomRepository
 
 object Injection {
-    fun provideMovieRepository(): MovieRepository = RoomRepository()
+    fun provideMovieRepository(): MovieRepository =
+        RoomRepository()
 }

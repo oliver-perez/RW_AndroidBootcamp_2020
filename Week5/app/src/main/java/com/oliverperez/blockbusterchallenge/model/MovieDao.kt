@@ -1,10 +1,10 @@
-package com.oliverperez.blockbusterchallenge.DataManagers
+package com.oliverperez.blockbusterchallenge.model
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.oliverperez.blockbusterchallenge.Models.Movie
+import com.oliverperez.blockbusterchallenge.model.Movie
 
 @Dao
 interface MovieDao {

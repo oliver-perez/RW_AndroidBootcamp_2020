@@ -1,6 +1,6 @@
-package com.oliverperez.blockbusterchallenge.DataManagers
+package com.oliverperez.blockbusterchallenge.model
 
-import com.oliverperez.blockbusterchallenge.Models.Movie
+import com.oliverperez.blockbusterchallenge.model.Movie
 import com.oliverperez.blockbusterchallenge.R
 
 /*

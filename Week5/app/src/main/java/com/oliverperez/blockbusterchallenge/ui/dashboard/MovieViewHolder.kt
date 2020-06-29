@@ -1,4 +1,4 @@
-package com.oliverperez.blockbusterchallenge.Views
+package com.oliverperez.blockbusterchallenge.ui.dashboard
 
 import android.media.Image
 import android.view.TextureView

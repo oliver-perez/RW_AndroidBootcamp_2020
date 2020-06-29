@@ -1,11 +1,11 @@
-package com.oliverperez.blockbusterchallenge.DataManagers
+package com.oliverperez.blockbusterchallenge.model
 
 import android.os.AsyncTask
 import androidx.lifecycle.LiveData
-import com.oliverperez.blockbusterchallenge.Models.Movie
 import com.oliverperez.blockbusterchallenge.app.BlockbusterApplication
 
-class RoomRepository : MovieRepository {
+class RoomRepository :
+    MovieRepository {
 
     private val movieDao: MovieDao = BlockbusterApplication.database.movieDao()
     private val allMovies: LiveData<List<Movie>>
@@ -15,7 +15,9 @@ class RoomRepository : MovieRepository {
     }
 
     override fun addMovie(movie: Movie) {
-        InsertAsyncTask(movieDao).execute((movie))
+        InsertAsyncTask(
+            movieDao
+        ).execute((movie))
     }
 
     override fun getAllMovies() = allMovies

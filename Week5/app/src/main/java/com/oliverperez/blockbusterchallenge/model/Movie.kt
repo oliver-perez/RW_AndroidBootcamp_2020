@@ -1,10 +1,9 @@
-package com.oliverperez.blockbusterchallenge.Models
+package com.oliverperez.blockbusterchallenge.model
 
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.*
 
 /*
 * Data class to represent a Movie item abstraction
@@ -31,7 +30,8 @@ data class Movie(@PrimaryKey(autoGenerate = true) val id: Int,
     )
 
     companion object CREATOR: Parcelable.Creator<Movie> {
-        override fun createFromParcel(source: Parcel): Movie = Movie(source)
+        override fun createFromParcel(source: Parcel): Movie =
+            Movie(source)
 
         override fun newArray(size: Int): Array<Movie?> = arrayOfNulls(size)
 

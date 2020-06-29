@@ -1,16 +1,10 @@
-package com.oliverperez.blockbusterchallenge.Adapters
+package com.oliverperez.blockbusterchallenge.ui.dashboard
 
-import android.media.Image
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.oliverperez.blockbusterchallenge.DataManagers.MovieDataManager
-import com.oliverperez.blockbusterchallenge.Models.Movie
+import com.oliverperez.blockbusterchallenge.model.Movie
 import com.oliverperez.blockbusterchallenge.R
-import com.oliverperez.blockbusterchallenge.Views.MovieViewHolder
-import kotlinx.android.synthetic.main.movie_view_holder.view.*
 
 class MovieGridAdapter(private val movies: List<Movie>, private val clickListener: MovieClickListener): RecyclerView.Adapter<MovieViewHolder>() {
     interface MovieClickListener {
@@ -20,7 +14,9 @@ class MovieGridAdapter(private val movies: List<Movie>, private val clickListene
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.movie_view_holder, parent, false)
-        return MovieViewHolder(view)
+        return MovieViewHolder(
+            view
+        )
     }
 
     override fun getItemCount(): Int = movies.size

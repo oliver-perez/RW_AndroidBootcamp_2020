@@ -1,8 +1,8 @@
-package com.oliverperez.blockbusterchallenge.Activities
+package com.oliverperez.blockbusterchallenge.ui.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.oliverperez.blockbusterchallenge.DataManagers.LoginPrefs
+import com.oliverperez.blockbusterchallenge.model.LoginPrefs
 import com.oliverperez.blockbusterchallenge.R
 import kotlinx.android.synthetic.main.activity_login.*
 
