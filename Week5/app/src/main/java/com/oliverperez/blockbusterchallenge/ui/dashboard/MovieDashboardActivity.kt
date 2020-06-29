@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.oliverperez.blockbusterchallenge.ui.login.LoginActivity
@@ -14,13 +16,14 @@ import com.oliverperez.blockbusterchallenge.model.LoginPrefs
 import com.oliverperez.blockbusterchallenge.model.MovieDataManager
 import com.oliverperez.blockbusterchallenge.model.Movie
 import com.oliverperez.blockbusterchallenge.R
+import com.oliverperez.blockbusterchallenge.viewmodel.MoviesViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), MovieGridAdapter.MovieClickListener {
+class MovieDashboardActivity : AppCompatActivity(), MovieGridAdapter.MovieClickListener {
 
+    private lateinit var moviesViewModel: MoviesViewModel
     private lateinit var moviesRecyclerView: RecyclerView
-    private val dataManager =
-        MovieDataManager()
+    private val dataManager = MovieDataManager()
 
     companion object {
         const val INTENT_MOVIE_KEY = "movie"
@@ -31,13 +34,24 @@ class MainActivity : AppCompatActivity(), MovieGridAdapter.MovieClickListener {
         setContentView(R.layout.activity_main)
         moviesRecyclerView = movies_recycler_view
         moviesRecyclerView.layoutManager = GridLayoutManager(this, 2)
-        moviesRecyclerView.adapter =
-            MovieGridAdapter(
-                dataManager.getMovies(),
-                this
-            )
+
         if (!LoginPrefs.isUserLoggedIn()) {
             startActivity(Intent(this, LoginActivity::class.java))
+        }
+        moviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel::class.java)
+        addDummyMovies()
+        moviesViewModel.getAllMovies().observe(this, Observer { movies ->
+            moviesRecyclerView.adapter =
+                MovieGridAdapter(
+                    movies,
+                    this
+                )
+        })
+    }
+
+    private fun addDummyMovies() {
+        dataManager.getMovies().forEach {
+            moviesViewModel.insert(it)
         }
     }
 
@@ -59,7 +73,7 @@ class MainActivity : AppCompatActivity(), MovieGridAdapter.MovieClickListener {
         return super.onOptionsItemSelected(item)
     }
 
-    fun showLogInScreen() {
+    private fun showLogInScreen() {
         startActivity(Intent(this, LoginActivity::class.java))
     }
 
