@@ -2,6 +2,7 @@ package com.oliverperez.blockbusterchallenge.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.oliverperez.blockbusterchallenge.DataManagers.LoginPrefs
 import com.oliverperez.blockbusterchallenge.R
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -16,6 +17,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun validateInput() {
         if (textFieldName.text.count() > 1 && textFieldPassword.text.count() > 3) {
+            LoginPrefs.saveUserLoginStatus(true, applicationContext)
             finish()
         } else {
             // TODO: Show error alert
