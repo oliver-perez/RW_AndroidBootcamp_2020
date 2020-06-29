@@ -2,6 +2,8 @@ package com.oliverperez.blockbusterchallenge.Models
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.util.*
 
 /*
@@ -13,7 +15,8 @@ import java.util.*
 * @property summary The summary of the movie
 * @property poster The poster image of the movie
  */
-data class Movie(val id: Int,
+@Entity(tableName = "movie_table")
+data class Movie(@PrimaryKey(autoGenerate = true) val id: Int,
                  val releaseDate: String,
                  val title: String,
                  val summary: String,

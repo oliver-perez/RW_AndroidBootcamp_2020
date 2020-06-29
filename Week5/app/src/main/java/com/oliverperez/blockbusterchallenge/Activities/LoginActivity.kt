@@ -17,7 +17,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun validateInput() {
         if (textFieldName.text.count() > 1 && textFieldPassword.text.count() > 3) {
-            LoginPrefs.saveUserLoginStatus(true, applicationContext)
+            LoginPrefs.saveUserLoginStatus(true)
             finish()
         } else {
             // TODO: Show error alert

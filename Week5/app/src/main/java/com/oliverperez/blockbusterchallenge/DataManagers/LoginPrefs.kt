@@ -7,18 +7,19 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import com.oliverperez.blockbusterchallenge.Activities.MainActivity
+import com.oliverperez.blockbusterchallenge.app.BlockbusterApplication
 
 object LoginPrefs {
 
     private const val KEY_USER_LOGGED = "KEY_USER_LOGGED"
 
-    fun defaultPrefs(context: Context): SharedPreferences
-            = PreferenceManager.getDefaultSharedPreferences(context)
+    private fun defaultPrefs(): SharedPreferences
+            = PreferenceManager.getDefaultSharedPreferences(BlockbusterApplication.getAppContext())
 
-    fun saveUserLoginStatus(logged: Boolean, context: Context) {
-        val editor = defaultPrefs(context).edit()
+    fun saveUserLoginStatus(logged: Boolean) {
+        val editor = defaultPrefs().edit()
         editor.putBoolean(KEY_USER_LOGGED, logged).apply()
     }
 
-    fun isUserLoggedIn(context: Context): Boolean = defaultPrefs(context).getBoolean(KEY_USER_LOGGED, false)
+    fun isUserLoggedIn(): Boolean = defaultPrefs().getBoolean(KEY_USER_LOGGED, false)
 }

@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(), MovieGridAdapter.MovieClickListener {
         moviesRecyclerView = movies_recycler_view
         moviesRecyclerView.layoutManager = GridLayoutManager(this, 2)
         moviesRecyclerView.adapter = MovieGridAdapter(dataManager.getMovies(), this)
-        if (!LoginPrefs.isUserLoggedIn(applicationContext)) {
+        if (!LoginPrefs.isUserLoggedIn()) {
             startActivity(Intent(this, LoginActivity::class.java))
         }
     }
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity(), MovieGridAdapter.MovieClickListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        LoginPrefs.saveUserLoginStatus(false, applicationContext)
+        LoginPrefs.saveUserLoginStatus(false)
         Toast.makeText(this, "You logged out", Toast.LENGTH_LONG).show()
         showLogInScreen()
         return super.onOptionsItemSelected(item)
