@@ -15,7 +15,7 @@ import androidx.room.PrimaryKey
 * @property poster The poster image of the movie
  */
 @Entity(tableName = "movie_table")
-data class Movie(@PrimaryKey(autoGenerate = true) val id: Int,
+data class Movie(@PrimaryKey(autoGenerate = true) val id: Int = 0,
                  val releaseDate: String,
                  val title: String,
                  val summary: String,

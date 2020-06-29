@@ -39,6 +39,7 @@ class MovieDashboardActivity : AppCompatActivity(), MovieGridAdapter.MovieClickL
             startActivity(Intent(this, LoginActivity::class.java))
         }
         moviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel::class.java)
+        moviesViewModel.clearAllMovies()
         addDummyMovies()
         moviesViewModel.getAllMovies().observe(this, Observer { movies ->
             moviesRecyclerView.adapter =

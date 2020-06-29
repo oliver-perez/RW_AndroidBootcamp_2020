@@ -13,6 +13,7 @@ class LoginActivity : AppCompatActivity() {
         loginButton.setOnClickListener {
             validateInput()
         }
+        textFieldName.requestFocus()
     }
 
     private fun validateInput() {

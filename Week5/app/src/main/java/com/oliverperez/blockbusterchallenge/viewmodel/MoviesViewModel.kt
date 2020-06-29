@@ -12,4 +12,5 @@ class MoviesViewModel(application: Application) : AndroidViewModel(application) 
 
     fun getAllMovies() = allMovies
     fun insert(movie: Movie) = repository.addMovie(movie)
+    fun clearAllMovies() = repository.clearAllMovies()
 }
