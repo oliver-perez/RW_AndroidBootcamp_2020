@@ -1,13 +1,13 @@
-package com.oliverperez.blockbusterchallenge.Activities
+package com.oliverperez.blockbusterchallenge.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
-import com.oliverperez.blockbusterchallenge.Models.Movie
+import com.oliverperez.blockbusterchallenge.model.Movie
 import com.oliverperez.blockbusterchallenge.R
+import com.oliverperez.blockbusterchallenge.ui.dashboard.MovieDashboardActivity
 import kotlinx.android.synthetic.main.activity_movie_detail.*
-import org.w3c.dom.Text
 
 class MovieDetailActivity : AppCompatActivity() {
 
@@ -20,7 +20,7 @@ class MovieDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_detail)
-        movie = intent.getParcelableExtra(MainActivity.INTENT_MOVIE_KEY) as Movie
+        movie = intent.getParcelableExtra(MovieDashboardActivity.INTENT_MOVIE_KEY) as Movie
         title = movie.title
         poster = poster_detail
         releaseDate = release_date_text

@@ -1,4 +1,4 @@
-package com.oliverperez.blockbusterchallenge.Views
+package com.oliverperez.blockbusterchallenge.ui.dashboard
 
 import android.media.Image
 import android.view.TextureView
@@ -10,6 +10,6 @@ import com.oliverperez.blockbusterchallenge.R
 import kotlinx.android.synthetic.main.movie_view_holder.view.*
 
 class MovieViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-   var poster = itemView.findViewById<ImageView>(R.id.poster_image)!!
+    var poster = itemView.findViewById<ImageView>(R.id.poster_image)!!
     var movieTitle = itemView.findViewById<TextView>(R.id.movie_title)!!
 }
