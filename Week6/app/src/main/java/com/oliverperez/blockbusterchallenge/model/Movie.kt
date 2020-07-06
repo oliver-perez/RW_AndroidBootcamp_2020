@@ -5,7 +5,7 @@ import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-/*
+/**
 * Data class to represent a Movie item abstraction
 *
 * @property id The unique ID of the movie
