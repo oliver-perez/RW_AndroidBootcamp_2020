@@ -23,7 +23,7 @@ class MovieDashboardActivity : AppCompatActivity(), MovieGridAdapter.MovieClickL
 
     private lateinit var moviesViewModel: MoviesViewModel
     private lateinit var moviesRecyclerView: RecyclerView
-    private val dataManager = DummyDataProvider()
+    private val movieAdapter by lazy { MovieGridAdapter(emptyList(), this)  }
 
     companion object {
         const val INTENT_MOVIE_KEY = "movie"
@@ -34,24 +34,21 @@ class MovieDashboardActivity : AppCompatActivity(), MovieGridAdapter.MovieClickL
         setContentView(R.layout.activity_main)
         moviesRecyclerView = movies_recycler_view
         moviesRecyclerView.layoutManager = GridLayoutManager(this, 2)
+        moviesRecyclerView.adapter = movieAdapter
 
         if (!LoginPrefs.isUserLoggedIn()) {
             startActivity(Intent(this, LoginActivity::class.java))
         }
         moviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel::class.java)
         moviesViewModel.getAllMovies().observe(this, Observer { movies ->
-            moviesRecyclerView.adapter =
-                MovieGridAdapter(
-                    movies,
-                    this
-                )
+            movieAdapter.updateMovies(movies)
         })
     }
 
     override fun movieItemClicked(movie: Movie) {
-        val movieItem = Intent(this, MovieDetailActivity::class.java)
-        movieItem.putExtra(INTENT_MOVIE_KEY, movie)
-        startActivity(movieItem)
+        Intent(this, MovieDetailActivity::class.java)
+            .apply { putExtra(INTENT_MOVIE_KEY, movie) }
+            .run { startActivity(this) }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -60,14 +57,17 @@ class MovieDashboardActivity : AppCompatActivity(), MovieGridAdapter.MovieClickL
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        LoginPrefs.saveUserLoginStatus(false)
-        Toast.makeText(this, "You logged out", Toast.LENGTH_LONG).show()
-        showLogInScreen()
+        if (item.itemId == R.id.menu_item) {
+            LoginPrefs.saveUserLoginStatus(false)
+            Toast.makeText(this, R.string.you_logged_out, Toast.LENGTH_LONG).show()
+            showLogInScreen()
+        }
         return super.onOptionsItemSelected(item)
     }
 
     private fun showLogInScreen() {
         startActivity(Intent(this, LoginActivity::class.java))
+        finish()
     }
 
 }

@@ -6,4 +6,6 @@
     <string name="textField_password_hint">Password</string>
     <string name="textField_username_hint">Username</string>
     <string name="login_button_title">Login</string>
+    <string name="logout">Logout</string>
+    <string name="you_logged_out">You logged out</string>
 </resources>

@@ -13,5 +13,4 @@ class MoviesViewModel(application: Application) : AndroidViewModel(application) 
     fun getAllMovies(): LiveData<List<Movie>> {
         return repository.getAllMovies()
     }
-    fun clearAllMovies() = repository.clearAllMovies()
 }

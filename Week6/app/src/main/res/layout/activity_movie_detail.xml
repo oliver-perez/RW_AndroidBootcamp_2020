@@ -20,7 +20,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/poster_detail"
+                android:id="@+id/poster"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/movie_poster_height"
                 android:layout_marginTop="@dimen/margin_standard"
@@ -30,7 +30,7 @@
                 app:srcCompat="@drawable/matrix" />
 
             <TextView
-                android:id="@+id/movie_detail_title"
+                android:id="@+id/movieDetailTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -40,7 +40,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/release_date_text"
+                android:id="@+id/releaseDateText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/movie_detail_date_text_size"
@@ -48,7 +48,7 @@
                 android:layout_margin="@dimen/margin_double" />
 
             <TextView
-                android:id="@+id/summary_text_view"
+                android:id="@+id/summaryTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/movie_detail_summary_text_size"

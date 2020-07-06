@@ -1,27 +1,27 @@
 package com.oliverperez.blockbusterchallenge.ui.login
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.oliverperez.blockbusterchallenge.model.LoginPrefs
 import com.oliverperez.blockbusterchallenge.R
+import com.oliverperez.blockbusterchallenge.ui.dashboard.MovieDashboardActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
+
+    private val presenter = LoginActivityPresenter(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         loginButton.setOnClickListener {
-            validateInput()
+            presenter.didTapLoginButton(textFieldName, textFieldPassword)
         }
         textFieldName.requestFocus()
     }
 
-    private fun validateInput() {
-        if (textFieldName.text.count() > 1 && textFieldPassword.text.count() > 3) {
-            LoginPrefs.saveUserLoginStatus(true)
-            finish()
-        } else {
-            // TODO: Show error alert
-        }
+    fun showMovieDashboard() {
+        startActivity(Intent(this, MovieDashboardActivity::class.java))
     }
 }
