@@ -1,6 +1,6 @@
 package com.example.marvelcharacters.networking
 
-import com.example.marvelcharacters.App
+import com.example.marvelcharacters.app.App
 import com.example.marvelcharacters.model.response.GetCharactersResponse
 import retrofit2.http.*
 

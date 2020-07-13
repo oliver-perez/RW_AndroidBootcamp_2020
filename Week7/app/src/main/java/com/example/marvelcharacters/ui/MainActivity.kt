@@ -3,18 +3,22 @@ package com.example.marvelcharacters.ui
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.marvelcharacters.App
+import com.example.marvelcharacters.app.App
 import com.example.marvelcharacters.R
 import com.example.marvelcharacters.model.response.Success
 import com.example.marvelcharacters.networking.NetworkStatusChecker
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
+import androidx.lifecycle.*
+import com.example.marvelcharacters.viewmodel.CharacterViewModel
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-
+    private val viewModel: CharacterViewModel by lazy {
+        ViewModelProviders.of(this).get(CharacterViewModel::class.java)
+    }
     private val remoteApi = App.remoteApi
     private val networkStatusChecker by lazy {
         NetworkStatusChecker(getSystemService(ConnectivityManager::class.java))
@@ -25,17 +29,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initCharacterGrid()
+        viewModel.getAllCharacters().observe(this, Observer {
+            characterAdapter.updateCharacters(it)
+            if (characterAdapter.itemCount == 0) {
+                getCharactersFromApi()
+            }
+        })
+    }
+
+    private fun getCharactersFromApi() {
         networkStatusChecker.performIfConnectedToInternet {
-            GlobalScope.launch(Dispatchers.Main) {
+            lifecycleScope.launch(Dispatchers.Main) {
                 val result = remoteApi.getCharacters()
                 if (result is Success) {
-                    characterAdapter.updateCharacters(result.data as MutableList)
+                    viewModel.insert(result.data)
                 } else {
                     // TODO: Implement error handling
                 }
             }
         }
-
     }
 
     private fun initCharacterGrid() {

@@ -1,5 +1,6 @@
 package com.example.marvelcharacters.model.entities
 
+import androidx.room.TypeConverter
 import kotlinx.serialization.Serializable
 
 @Serializable
