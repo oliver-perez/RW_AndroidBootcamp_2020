@@ -4,7 +4,7 @@ import com.example.marvelcharacters.model.entities.Character
 import com.example.marvelcharacters.model.response.*
 
 
-const val BASE_URL = "https://gateway.marvel.com:443"
+const val BASE_URL = "https://gateway.marvel.com"
 
 class RemoteApi(private val apiService: RemoteApiService) {
 
