@@ -12,6 +12,7 @@ import com.example.marvelcharacters.networking.NetworkStatusChecker
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
 import androidx.lifecycle.*
+import com.example.marvelcharacters.utils.toast
 import com.example.marvelcharacters.viewmodel.CharacterViewModel
 import kotlinx.coroutines.launch
 
@@ -44,7 +45,9 @@ class MainActivity : AppCompatActivity() {
                 if (result is Success) {
                     viewModel.insert(result.data)
                 } else {
-                    // TODO: Implement error handling
+                    toast(
+                        getString(R.string.error_message)
+                    )
                 }
             }
         }
