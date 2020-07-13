@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.marvelcharacters.App
 import com.example.marvelcharacters.R
-import com.example.marvelcharacters.model.entities.Character
 import com.example.marvelcharacters.model.response.Success
 import com.example.marvelcharacters.networking.NetworkStatusChecker
 import kotlinx.android.synthetic.main.activity_main.*
