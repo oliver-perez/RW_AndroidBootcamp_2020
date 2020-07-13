@@ -7,4 +7,8 @@
     <dimen name="margin_double">16dp</dimen>
     <dimen name="margin_standard">8dp</dimen>
     <dimen name="movie_poster_height">300dp</dimen>
+    <dimen name="login_input_margin_top">96dp</dimen>
+    <dimen name="zero_dp">0dp</dimen>
+    <dimen name="login_button_margin_top">52dp</dimen>
+    <item name="text_edit_ems_wide" format="integer" type="integer">10</item>
 </resources>

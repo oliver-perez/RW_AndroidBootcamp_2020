@@ -1,14 +1,11 @@
 package com.oliverperez.blockbusterchallenge.model
 
-import androidx.lifecycle.ViewModelProviders
-import com.oliverperez.blockbusterchallenge.model.Movie
 import com.oliverperez.blockbusterchallenge.R
-import com.oliverperez.blockbusterchallenge.viewmodel.MoviesViewModel
 
-/*
+/**
 * Class to manage and provide data related to movie objects
  */
-class MovieDataManager {
+class DummyDataProvider {
 
     private val movies = listOf<Movie>(
         Movie(
