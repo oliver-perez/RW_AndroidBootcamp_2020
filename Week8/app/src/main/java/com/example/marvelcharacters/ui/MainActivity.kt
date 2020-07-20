@@ -1,31 +1,24 @@
 package com.example.marvelcharacters.ui
 
-import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.marvelcharacters.app.App
 import com.example.marvelcharacters.R
-import com.example.marvelcharacters.model.response.Success
-import com.example.marvelcharacters.networking.NetworkStatusChecker
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.Dispatchers
 import androidx.lifecycle.*
 import androidx.work.*
-import com.example.marvelcharacters.model.entities.Character
 import com.example.marvelcharacters.utils.toast
 import com.example.marvelcharacters.viewmodel.CharacterViewModel
+import com.example.marvelcharacters.worker.API_RESPONSE_WORKER_KEY
 import com.example.marvelcharacters.worker.RemoteApiWorker
-import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
     private val viewModel: CharacterViewModel by lazy {
         ViewModelProviders.of(this).get(CharacterViewModel::class.java)
     }
-    private val networkStatusChecker by lazy {
-        NetworkStatusChecker(getSystemService(ConnectivityManager::class.java))
-    }
+
     private val characterAdapter by lazy { CharacterGridAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,13 +27,14 @@ class MainActivity : AppCompatActivity() {
         initCharacterGrid()
         viewModel.getAllCharacters().observe(this, Observer {
             characterAdapter.updateCharacters(it)
-            if (characterAdapter.itemCount == 0) {
-                getCharactersFromApi()
-            }
         })
+        updateBatchCharactersFromApi()
     }
 
-    private fun getCharactersFromApi() {
+    /**
+     * Runs background API requests periodically to check for updated information
+     * */
+    private fun updateBatchCharactersFromApi() {
         val constraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.CONNECTED)
             .setRequiredNetworkType(NetworkType.NOT_ROAMING)
@@ -48,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             .setRequiresStorageNotLow(true)
             .build()
 
-        val remoteApiWorker = OneTimeWorkRequestBuilder<RemoteApiWorker>()
+        val remoteApiWorker = PeriodicWorkRequestBuilder<RemoteApiWorker>(15, TimeUnit.SECONDS)
             .setConstraints(constraints)
             .build()
 
@@ -56,8 +50,8 @@ class MainActivity : AppCompatActivity() {
         workManager.enqueue(remoteApiWorker)
 
         workManager.getWorkInfoByIdLiveData(remoteApiWorker.id).observe(this, Observer { info ->
-            if (info?.state?.isFinished == true) {
-               if (info?.state == WorkInfo.State.FAILED) {
+            if ((info != null) && (info.state == WorkInfo.State.ENQUEUED)) {
+               if (!info?.outputData.getBoolean(API_RESPONSE_WORKER_KEY, true)) {
                    toast(getString(R.string.error_message))
                }
             }
