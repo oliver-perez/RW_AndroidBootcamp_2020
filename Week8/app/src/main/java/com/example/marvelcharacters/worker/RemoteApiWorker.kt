@@ -12,7 +12,7 @@ import com.example.marvelcharacters.model.response.Success
 const val API_RESPONSE_WORKER_KEY = "api_response_success"
 
 class RemoteApiWorker(context: Context, workerParameters: WorkerParameters) : CoroutineWorker(context, workerParameters) {
-    private val remoteApi = App.remoteApi
+    private val remoteApi = Injection.provideRemoteApi()
     private val repository = Injection.provideRepository()
 
     override suspend fun doWork(): Result {

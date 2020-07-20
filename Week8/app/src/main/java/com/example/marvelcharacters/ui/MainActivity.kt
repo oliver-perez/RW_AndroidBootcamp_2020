@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             .setRequiresStorageNotLow(true)
             .build()
 
-        val remoteApiWorker = PeriodicWorkRequestBuilder<RemoteApiWorker>(15, TimeUnit.SECONDS)
+        val remoteApiWorker = PeriodicWorkRequestBuilder<RemoteApiWorker>(15, TimeUnit.MINUTES)
             .setConstraints(constraints)
             .build()
 
@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         workManager.getWorkInfoByIdLiveData(remoteApiWorker.id).observe(this, Observer { info ->
             if ((info != null) && (info.state == WorkInfo.State.ENQUEUED)) {
+                toast(getString(R.string.sync_in_progress))
                if (!info?.outputData.getBoolean(API_RESPONSE_WORKER_KEY, true)) {
                    toast(getString(R.string.error_message))
                }
