@@ -12,15 +12,17 @@ import com.example.marvelcharacters.networking.NetworkStatusChecker
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
 import androidx.lifecycle.*
+import androidx.work.*
+import com.example.marvelcharacters.model.entities.Character
 import com.example.marvelcharacters.utils.toast
 import com.example.marvelcharacters.viewmodel.CharacterViewModel
+import com.example.marvelcharacters.worker.RemoteApiWorker
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private val viewModel: CharacterViewModel by lazy {
         ViewModelProviders.of(this).get(CharacterViewModel::class.java)
     }
-    private val remoteApi = App.remoteApi
     private val networkStatusChecker by lazy {
         NetworkStatusChecker(getSystemService(ConnectivityManager::class.java))
     }
@@ -39,18 +41,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getCharactersFromApi() {
-        networkStatusChecker.performIfConnectedToInternet {
-            lifecycleScope.launch(Dispatchers.Main) {
-                val result = remoteApi.getCharacters()
-                if (result is Success) {
-                    viewModel.insert(result.data)
-                } else {
-                    toast(
-                        getString(R.string.error_message)
-                    )
-                }
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .setRequiredNetworkType(NetworkType.NOT_ROAMING)
+            .setRequiresBatteryNotLow(true)
+            .setRequiresStorageNotLow(true)
+            .build()
+
+        val remoteApiWorker = OneTimeWorkRequestBuilder<RemoteApiWorker>()
+            .setConstraints(constraints)
+            .build()
+
+        val workManager = WorkManager.getInstance(this)
+        workManager.enqueue(remoteApiWorker)
+
+        workManager.getWorkInfoByIdLiveData(remoteApiWorker.id).observe(this, Observer { info ->
+            if (info?.state?.isFinished == true) {
+               if (info?.state == WorkInfo.State.FAILED) {
+                   toast(getString(R.string.error_message))
+               }
             }
-        }
+        })
     }
 
     private fun initCharacterGrid() {
