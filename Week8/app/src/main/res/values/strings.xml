@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MarvelCharacters</string>
+    <string name="character_image">characterImage</string>
+    <string name="error_message">An error occurred while trying to get Characters information. Please reopen the app to try again</string>
+</resources>
