@@ -9,8 +9,8 @@ const val BASE_URL = "https://gateway.marvel.com"
 class RemoteApi(private val apiService: RemoteApiService) {
 
     suspend fun getCharacters(): Result<List<Character>> = try {
-        val data = apiService.getCharacters()
-        Success(data.data.results)
+        val response = apiService.getCharacters()
+        Success(response.data.results)
     } catch (error: Throwable) {
         Failure(error)
     }

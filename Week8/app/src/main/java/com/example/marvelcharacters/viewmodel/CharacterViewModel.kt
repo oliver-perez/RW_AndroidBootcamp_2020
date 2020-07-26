@@ -1,14 +1,10 @@
 package com.example.marvelcharacters.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.ViewModel
 import com.example.marvelcharacters.app.Injection
 import com.example.marvelcharacters.model.entities.Character
-import kotlinx.coroutines.launch
 
-class CharacterViewModel(application: Application) : AndroidViewModel(application) {
+class CharacterViewModel() : ViewModel() {
 
     private val repository = Injection.provideRepository()
 

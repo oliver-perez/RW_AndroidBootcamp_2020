@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.marvelcharacters.R
 import com.example.marvelcharacters.model.entities.Character
 
-class CharacterGridAdapter(private var characters: MutableList<Character> = mutableListOf()): RecyclerView.Adapter<CharacterGridViewHolder>() {
+class CharacterGridAdapter(): RecyclerView.Adapter<CharacterGridViewHolder>() {
+
+    private var characters: MutableList<Character> = mutableListOf()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterGridViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.character_view_holder, parent, false)
