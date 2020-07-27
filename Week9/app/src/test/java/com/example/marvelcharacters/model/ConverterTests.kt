@@ -2,9 +2,7 @@ package com.example.marvelcharacters.model
 
 import com.example.marvelcharacters.model.converters.Converter
 import com.example.marvelcharacters.model.entities.Thumbnail
-import org.junit.After
 import org.junit.Test
-
 import org.junit.Assert.*
 import org.junit.Before
 

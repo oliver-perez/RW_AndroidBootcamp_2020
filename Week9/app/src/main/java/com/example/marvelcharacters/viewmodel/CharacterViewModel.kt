@@ -10,8 +10,8 @@ import java.util.concurrent.TimeUnit
 
 class CharacterViewModel() : ViewModel() {
 
-    private val repository = Injection.provideRepository()
-    private val workManager = Injection.provideWorkManager()
+    private val repository by lazy { Injection.provideRepository() }
+    private val workManager by lazy { Injection.provideWorkManager() }
     private val updateBatchCharactersStatusId = MutableLiveData<Int>()
 
     fun getAllCharacters() = repository.getAllCharacters()
@@ -26,18 +26,21 @@ class CharacterViewModel() : ViewModel() {
             .setConstraints(getWorkerConstraints())
             .build()
         workManager.enqueue(remoteApiWorker)
-        workManager.getWorkInfoByIdLiveData(remoteApiWorker.id).observeForever(Observer { info ->
-            if (info.state == WorkInfo.State.ENQUEUED) {
-                updateBatchCharactersStatusId.postValue(R.string.sync_in_progress)
-                if (!info.outputData.getBoolean(API_RESPONSE_WORKER_KEY, true)) {
-                    updateBatchCharactersStatusId.postValue(R.string.error_message)
-                }
-            }
+        workManager.getWorkInfoByIdLiveData(remoteApiWorker.id).observeForever(Observer {
+            postBatchCharactersStatusWhenEnqueued(it)
         })
     }
 
-    private fun getWorkerConstraints() = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.CONNECTED)
+    fun postBatchCharactersStatusWhenEnqueued(info: WorkInfo) {
+        if (info.state == WorkInfo.State.ENQUEUED) {
+            updateBatchCharactersStatusId.postValue(R.string.sync_in_progress)
+            if (!info.outputData.getBoolean(API_RESPONSE_WORKER_KEY, true)) {
+                updateBatchCharactersStatusId.postValue(R.string.error_message)
+            }
+        }
+    }
+
+    fun getWorkerConstraints() = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.NOT_ROAMING)
             .setRequiresBatteryNotLow(true)
             .setRequiresStorageNotLow(true)
