@@ -1,4 +1,4 @@
-package com.example.marvelcharacters.repository.remote
+package com.example.marvelcharacters.repository.remote.helpers
 
 /**
  * Represents the Success and Failure cases from the Remote API.

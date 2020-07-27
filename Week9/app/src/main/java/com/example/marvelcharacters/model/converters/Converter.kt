@@ -3,7 +3,7 @@ package com.example.marvelcharacters.model.converters
 import androidx.room.TypeConverter
 import com.example.marvelcharacters.model.entities.Thumbnail
 
-class Converters {
+class Converter {
     @TypeConverter
     fun fromThumbnailUrl(url: String): Thumbnail =
         Thumbnail(url, "")

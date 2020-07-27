@@ -5,6 +5,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
 import com.example.marvelcharacters.app.Injection
+import com.example.marvelcharacters.repository.remote.helpers.Success
 
 const val API_RESPONSE_WORKER_KEY = "api_response_success"
 

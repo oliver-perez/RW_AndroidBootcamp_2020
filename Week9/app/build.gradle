@@ -84,4 +84,9 @@ dependencies {
     // Background processing
     implementation "androidx.work:work-runtime-ktx:2.3.4"
 
+    // Testing
+    testImplementation 'junit:junit:4.12'
+    testImplementation "org.mockito:mockito-core:2.11.0"
+    testImplementation "android.arch.core:core-testing:1.1.1"
+
 }

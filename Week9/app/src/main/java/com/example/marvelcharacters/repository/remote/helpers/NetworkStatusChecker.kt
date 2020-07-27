@@ -1,4 +1,4 @@
-package com.example.marvelcharacters.repository.remote
+package com.example.marvelcharacters.repository.remote.helpers
 
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
