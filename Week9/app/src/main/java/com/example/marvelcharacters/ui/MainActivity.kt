@@ -10,8 +10,8 @@ import androidx.lifecycle.*
 import androidx.work.*
 import com.example.marvelcharacters.utils.toast
 import com.example.marvelcharacters.viewmodel.CharacterViewModel
-import com.example.marvelcharacters.worker.API_RESPONSE_WORKER_KEY
-import com.example.marvelcharacters.worker.RemoteApiWorker
+import com.example.marvelcharacters.repository.remote.API_RESPONSE_WORKER_KEY
+import com.example.marvelcharacters.repository.remote.RemoteApiWorker
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {

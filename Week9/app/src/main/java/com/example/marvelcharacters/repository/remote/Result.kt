@@ -1,4 +1,4 @@
-package com.example.marvelcharacters.model.response
+package com.example.marvelcharacters.repository.remote
 
 /**
  * Represents the Success and Failure cases from the Remote API.

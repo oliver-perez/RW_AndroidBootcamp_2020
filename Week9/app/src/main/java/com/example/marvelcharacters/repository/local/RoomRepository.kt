@@ -1,11 +1,11 @@
-package com.example.marvelcharacters.repository
+package com.example.marvelcharacters.repository.local
 
 import androidx.lifecycle.LiveData
-import com.example.marvelcharacters.app.App
 import com.example.marvelcharacters.app.Injection
 import com.example.marvelcharacters.model.entities.Character
 
-class RoomRepository: CharacterRepository {
+class RoomRepository:
+    CharacterRepository {
 
     private val characterDao = Injection.provideCharacterDao()
 

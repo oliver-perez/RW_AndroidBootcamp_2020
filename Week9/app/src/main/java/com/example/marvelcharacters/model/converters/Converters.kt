@@ -5,7 +5,8 @@ import com.example.marvelcharacters.model.entities.Thumbnail
 
 class Converters {
     @TypeConverter
-    fun fromThumbnailUrl(url: String): Thumbnail = Thumbnail(url, "")
+    fun fromThumbnailUrl(url: String): Thumbnail =
+        Thumbnail(url, "")
 
     @TypeConverter
     fun thumbnailToURL(thumbnail: Thumbnail): String = thumbnail.path + "." + thumbnail.extension

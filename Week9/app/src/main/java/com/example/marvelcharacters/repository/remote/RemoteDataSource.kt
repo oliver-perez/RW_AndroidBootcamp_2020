@@ -1,10 +1,10 @@
-package com.example.marvelcharacters.networking
+package com.example.marvelcharacters.repository.remote
 
 import com.example.marvelcharacters.app.App
-import com.example.marvelcharacters.model.response.GetCharactersResponse
+import com.example.marvelcharacters.model.entities.GetCharactersResponse
 import retrofit2.http.*
 
-interface RemoteApiService {
+interface RemoteDataSource {
     @GET("/v1/public/characters")
     suspend fun getCharacters(
         @Query("apikey") apiKey: String = App.getToken(),

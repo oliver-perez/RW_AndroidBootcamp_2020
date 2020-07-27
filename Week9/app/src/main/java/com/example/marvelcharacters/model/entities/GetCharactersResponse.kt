@@ -1,4 +1,4 @@
-package com.example.marvelcharacters.model.response
+package com.example.marvelcharacters.model.entities
 import com.example.marvelcharacters.model.entities.CharactersResponseData
 import kotlinx.serialization.Serializable
 
