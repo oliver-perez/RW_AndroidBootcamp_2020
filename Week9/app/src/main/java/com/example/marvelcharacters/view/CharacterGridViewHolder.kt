@@ -1,4 +1,4 @@
-package com.example.marvelcharacters.ui
+package com.example.marvelcharacters.view
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

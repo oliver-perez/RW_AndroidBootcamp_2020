@@ -1,4 +1,4 @@
-package com.example.marvelcharacters.networking
+package com.example.marvelcharacters.repository.remote
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
@@ -30,5 +30,5 @@ fun buildRetrofit(): Retrofit {
         .build()
 }
 
-fun buildApiService(): RemoteApiService =
-    buildRetrofit().create(RemoteApiService::class.java)
+fun buildApiService(): RemoteDataSource =
+    buildRetrofit().create(RemoteDataSource::class.java)

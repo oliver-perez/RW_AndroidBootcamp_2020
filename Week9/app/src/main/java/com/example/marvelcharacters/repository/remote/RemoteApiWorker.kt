@@ -1,13 +1,11 @@
-package com.example.marvelcharacters.worker
+package com.example.marvelcharacters.repository.remote
 
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
-import com.example.marvelcharacters.app.App
 import com.example.marvelcharacters.app.Injection
-import com.example.marvelcharacters.model.entities.Character
-import com.example.marvelcharacters.model.response.Success
+import com.example.marvelcharacters.repository.remote.helpers.Success
 
 const val API_RESPONSE_WORKER_KEY = "api_response_success"
 

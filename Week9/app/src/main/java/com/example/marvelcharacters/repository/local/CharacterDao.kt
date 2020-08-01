@@ -1,4 +1,4 @@
-package com.example.marvelcharacters.repository
+package com.example.marvelcharacters.repository.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
