@@ -3,13 +3,11 @@ package com.example.marvelcharacters.viewmodel
 import androidx.lifecycle.*
 import androidx.work.*
 import com.example.marvelcharacters.R
-import com.example.marvelcharacters.app.Injection
 import com.example.marvelcharacters.repository.local.CharacterRepository
 import com.example.marvelcharacters.repository.local.RoomRepository
 import com.example.marvelcharacters.repository.remote.API_RESPONSE_WORKER_KEY
 import org.koin.core.KoinComponent
 import org.koin.core.inject
-
 
 class CharacterViewModel() : ViewModel(), KoinComponent {
     private val repository: CharacterRepository by inject<RoomRepository>()
