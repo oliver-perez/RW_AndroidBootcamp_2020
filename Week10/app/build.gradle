@@ -4,6 +4,10 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlinx-serialization'
 apply plugin: 'kotlin-kapt'
 
+ext {
+    koinVersion = "2.0.1"
+}
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.0"
@@ -89,4 +93,9 @@ dependencies {
     testImplementation "org.mockito:mockito-core:2.11.0"
     testImplementation "android.arch.core:core-testing:1.1.1"
 
+    // Koin
+    implementation "org.koin:koin-android:$koinVersion"
+    implementation "org.koin:koin-androidx-scope:$koinVersion"
+    implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
+    testImplementation "org.koin:koin-test:$koinVersion"
 }

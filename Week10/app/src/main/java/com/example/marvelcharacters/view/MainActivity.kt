@@ -11,27 +11,27 @@ import androidx.work.WorkInfo
 import com.example.marvelcharacters.repository.remote.API_RESPONSE_WORKER_KEY
 import com.example.marvelcharacters.utils.toast
 import com.example.marvelcharacters.viewmodel.CharacterViewModel
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel: CharacterViewModel by lazy {
-        ViewModelProviders.of(this).get(CharacterViewModel::class.java)
-    }
+    private val myViewModel: CharacterViewModel by viewModel()
 
-    private val characterAdapter by lazy { CharacterGridAdapter() }
+    private val characterAdapter: CharacterGridAdapter by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initCharacterGrid()
         configureObservers()
-        viewModel.onViewCreated()
+        myViewModel.onViewCreated()
     }
 
     private fun configureObservers() {
-        viewModel.getAllCharacters().observe(this, Observer {
+        myViewModel.getAllCharacters().observe(this, Observer {
             characterAdapter.updateCharacters(it)
         })
-        viewModel.getUpdateBatchStatus().observe(this, Observer { statusResourceId ->
+        myViewModel.getUpdateBatchStatus().observe(this, Observer { statusResourceId ->
             toast(getString(statusResourceId))
         })
     }

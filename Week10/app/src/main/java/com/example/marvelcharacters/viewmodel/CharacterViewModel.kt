@@ -4,14 +4,17 @@ import androidx.lifecycle.*
 import androidx.work.*
 import com.example.marvelcharacters.R
 import com.example.marvelcharacters.app.Injection
+import com.example.marvelcharacters.repository.local.CharacterRepository
+import com.example.marvelcharacters.repository.local.RoomRepository
 import com.example.marvelcharacters.repository.remote.API_RESPONSE_WORKER_KEY
-import com.example.marvelcharacters.repository.remote.RemoteApiWorker
-import java.util.concurrent.TimeUnit
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class CharacterViewModel() : ViewModel() {
 
-    private val repository by lazy { Injection.provideRepository() }
-    private val workManager by lazy { Injection.provideWorkManager() }
+class CharacterViewModel() : ViewModel(), KoinComponent {
+    private val repository: CharacterRepository by inject<RoomRepository>()
+    private val workManager: WorkManager by inject()
+    private val remoteApiWorker: PeriodicWorkRequest by inject()
     private val updateBatchCharactersStatusId = MutableLiveData<Int>()
 
     fun getAllCharacters() = repository.getAllCharacters()
@@ -22,9 +25,6 @@ class CharacterViewModel() : ViewModel() {
      * Runs background API requests periodically to check for updated information
      * */
     private fun setPeriodicWorkerRequests() {
-        val remoteApiWorker = PeriodicWorkRequestBuilder<RemoteApiWorker>(15, TimeUnit.MINUTES)
-            .setConstraints(getWorkerConstraints())
-            .build()
         workManager.enqueue(remoteApiWorker)
         workManager.getWorkInfoByIdLiveData(remoteApiWorker.id).observeForever(Observer {
             postBatchCharactersStatusWhenEnqueued(it)
@@ -39,10 +39,4 @@ class CharacterViewModel() : ViewModel() {
             }
         }
     }
-
-    fun getWorkerConstraints() = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.NOT_ROAMING)
-            .setRequiresBatteryNotLow(true)
-            .setRequiresStorageNotLow(true)
-            .build()
 }
