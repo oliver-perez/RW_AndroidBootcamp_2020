@@ -12,7 +12,7 @@ import org.koin.core.inject
 class CharacterViewModel() : ViewModel(), KoinComponent {
     private val repository: CharacterRepository by inject<RoomRepository>()
     private val workManager: WorkManager by inject()
-    private val remoteApiWorker: PeriodicWorkRequest by inject()
+    private val periodicApiWorker: PeriodicWorkRequest by inject()
     private val updateBatchCharactersStatusId = MutableLiveData<Int>()
 
     fun getAllCharacters() = repository.getAllCharacters()
@@ -23,8 +23,8 @@ class CharacterViewModel() : ViewModel(), KoinComponent {
      * Runs background API requests periodically to check for updated information
      * */
     private fun setPeriodicWorkerRequests() {
-        workManager.enqueue(remoteApiWorker)
-        workManager.getWorkInfoByIdLiveData(remoteApiWorker.id).observeForever(Observer {
+        workManager.enqueue(periodicApiWorker)
+        workManager.getWorkInfoByIdLiveData(periodicApiWorker.id).observeForever(Observer {
             postBatchCharactersStatusWhenEnqueued(it)
         })
     }
