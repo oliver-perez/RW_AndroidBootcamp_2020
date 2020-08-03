@@ -1,10 +1,7 @@
 package com.example.marvelcharacters.app
 
 import android.app.Application
-import com.example.marvelcharacters.di.localRepositoryModule
-import com.example.marvelcharacters.di.mainViewModule
-import com.example.marvelcharacters.di.remoteRepositoryModule
-import com.example.marvelcharacters.di.viewModelModule
+import com.example.marvelcharacters.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -29,7 +26,8 @@ class App : Application() {
                     mainViewModule,
                     viewModelModule,
                     localRepositoryModule,
-                    remoteRepositoryModule
+                    remoteRepositoryModule,
+                    workManagerModule
                 )
             )
         }

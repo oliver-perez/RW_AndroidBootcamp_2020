@@ -29,7 +29,7 @@ class CharacterViewModel() : ViewModel(), KoinComponent {
         })
     }
 
-    fun postBatchCharactersStatusWhenEnqueued(info: WorkInfo) {
+    private fun postBatchCharactersStatusWhenEnqueued(info: WorkInfo) {
         if (info.state == WorkInfo.State.ENQUEUED) {
             updateBatchCharactersStatusId.postValue(R.string.sync_in_progress)
             if (!info.outputData.getBoolean(API_RESPONSE_WORKER_KEY, true)) {
