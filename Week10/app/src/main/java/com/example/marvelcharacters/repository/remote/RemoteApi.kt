@@ -5,9 +5,6 @@ import com.example.marvelcharacters.repository.remote.helpers.Failure
 import com.example.marvelcharacters.repository.remote.helpers.Result
 import com.example.marvelcharacters.repository.remote.helpers.Success
 
-
-const val BASE_URL = "https://gateway.marvel.com"
-
 class RemoteApi(private val apiService: RemoteDataSource) {
 
     suspend fun getCharacters(): Result<List<Character>> = try {

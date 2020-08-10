@@ -1,13 +1,14 @@
 package com.example.marvelcharacters.repository.local
 
 import androidx.lifecycle.LiveData
-import com.example.marvelcharacters.app.Injection
 import com.example.marvelcharacters.model.entities.Character
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
 class RoomRepository:
-    CharacterRepository {
+    CharacterRepository, KoinComponent {
 
-    private val characterDao = Injection.provideCharacterDao()
+    private val characterDao: CharacterDao by inject()
 
     override suspend fun insert(characters: List<Character>) = characterDao.insert(characters)
 
