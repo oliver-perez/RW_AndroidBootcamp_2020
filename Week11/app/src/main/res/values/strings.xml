@@ -3,4 +3,7 @@
     <string name="character_image">characterImage</string>
     <string name="sync_in_progress">Synchronizing data to remote API</string>
     <string name="error_message">An error occurred while trying to get Characters information. Please reopen the app to try again</string>
+    <string name="characterposter">CharacterPoster</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
 </resources>

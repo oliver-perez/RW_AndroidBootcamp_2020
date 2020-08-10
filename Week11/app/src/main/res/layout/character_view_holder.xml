@@ -22,6 +22,7 @@
             android:scaleType="fitCenter"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@android:drawable/btn_star"
+            android:transitionName="tPoster"
             tools:layout_editor_absoluteX="@dimen/sixteen_dp" />
 
         <TextView
@@ -29,6 +30,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/forty_dp"
             android:gravity="center"
-            android:maxLines="2" />
+            android:maxLines="2"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:transitionName="tName" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
