@@ -1,24 +1,22 @@
 package com.example.marvelcharacters.view.characterdashboard
 
-import android.content.ClipData.newIntent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.marvelcharacters.R
 import kotlinx.android.synthetic.main.activity_main.*
 import androidx.lifecycle.*
 import com.example.marvelcharacters.model.entities.Character
 import com.example.marvelcharacters.utils.toast
-import com.example.marvelcharacters.view.characterdashboard.CharacterGridAdapter
-import com.example.marvelcharacters.view.characterdetail.CharacterDetailActivity
-import com.example.marvelcharacters.view.characterdetail.CharacterDetailActivityIntent
+import com.example.marvelcharacters.view.characterdetail.characterDetailActivityIntent
 import com.example.marvelcharacters.viewmodel.CharacterViewModel
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import androidx.core.util.Pair
+import kotlinx.android.synthetic.main.character_view_holder.view.*
 
 class MainActivity : AppCompatActivity() {
     private val myViewModel: CharacterViewModel by viewModel()
@@ -40,13 +38,25 @@ class MainActivity : AppCompatActivity() {
         myViewModel.getUpdateBatchStatus().observe(this, Observer { statusResourceId ->
             toast(getString(statusResourceId))
         })
-        characterAdapter.listener = {
-            showDetail(it)
+        characterAdapter.listener = { view, character ->
+            showDetail(view, character)
         }
     }
 
-    private fun showDetail(character: Character) {
-        startActivity(CharacterDetailActivityIntent(character))
+    private fun showDetail(view: View, character: Character) {
+        val characterName = view.titleTextView
+        val characterPoster = view.characterImageView
+        val posterPair = Pair.create(characterPoster as View, "tPoster")
+        val namePair = Pair.create(characterName as View, "tName")
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, posterPair, namePair)
+        startActivity(
+            characterDetailActivityIntent(
+                character.name,
+                character.description,
+                character.thumbnail
+            ),
+            options.toBundle()
+        )
     }
 
     private fun initCharacterGrid() {

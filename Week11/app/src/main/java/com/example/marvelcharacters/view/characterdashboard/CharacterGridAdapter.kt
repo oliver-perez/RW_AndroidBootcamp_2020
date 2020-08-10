@@ -10,7 +10,7 @@ import com.example.marvelcharacters.model.entities.Character
 class CharacterGridAdapter(): RecyclerView.Adapter<CharacterGridViewHolder>() {
 
     private var characters: MutableList<Character> = mutableListOf()
-    var listener: ((Character) -> Unit) ? = null
+    var listener: ((View, Character) -> Unit) ? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterGridViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -30,7 +30,7 @@ class CharacterGridAdapter(): RecyclerView.Adapter<CharacterGridViewHolder>() {
     override fun onBindViewHolder(holder: CharacterGridViewHolder, position: Int) {
         holder.bind(characters[position])
         holder.itemView.setOnClickListener {
-            listener?.invoke(characters[position])
+            listener?.invoke(holder.itemView, characters[position])
         }
 
     }
